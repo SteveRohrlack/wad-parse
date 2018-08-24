@@ -4,6 +4,13 @@
 
 This is a Doom "wad" parser. Just for fun and to learn stuff.
 
+If you'd like to find out what this is all about:
+
+* [Wikipedia entry](https://en.wikipedia.org/wiki/Doom_WAD)
+* [Doom Wiki](https://doomwiki.org/wiki/WAD)
+* [Wikia Doom](http://doom.wikia.com/wiki/WAD#Map_data_lumps)
+* [unoffical docs](http://www.gamers.org/dhs/helpdocs/dmsp1666.html)
+
 ## Compatibility
 
 The parser has been tested with the Doom 1 wad file and should be compatible to the Doom 2 format as well.
