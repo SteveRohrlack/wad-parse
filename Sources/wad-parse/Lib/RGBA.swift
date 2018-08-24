@@ -1,5 +1,5 @@
 //
-//  RGBColor.swift
+//  RGBA.swift
 //  wad-parse
 //
 //  Created by Steve Rohrlack on 07.08.18.
