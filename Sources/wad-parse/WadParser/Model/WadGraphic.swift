@@ -2,7 +2,7 @@
 //  WadGraphic.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 20.08.18.
+//  Created by Steve Rohrlack on 20.08.18.
 //
 
 import Foundation

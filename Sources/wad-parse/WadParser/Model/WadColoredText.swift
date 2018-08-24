@@ -2,7 +2,7 @@
 //  ColoredText.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 03.08.18.
+//  Created by Steve Rohrlack on 03.08.18.
 //
 // see https://doomwiki.org/wiki/ENDOOM
 

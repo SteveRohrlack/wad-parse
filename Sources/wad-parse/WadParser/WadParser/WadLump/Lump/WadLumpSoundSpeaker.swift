@@ -2,7 +2,7 @@
 //  WadLumpSoundSpeaker.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 22.08.18.
+//  Created by Steve Rohrlack on 22.08.18.
 //
 //  see http://doom.wikia.com/wiki/PC_speaker_sound_effects
 //  see https://www.doomworld.com/idgames/sounds/pcspkr10

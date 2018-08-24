@@ -2,7 +2,7 @@
 //  WadLumpGraphicFlat.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 22.08.18.
+//  Created by Steve Rohrlack on 22.08.18.
 //
 
 import Foundation

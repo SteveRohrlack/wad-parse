@@ -2,7 +2,7 @@
 //  WadLumpColormap.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 08.08.18.
+//  Created by Steve Rohrlack on 08.08.18.
 //
 //  see https://doomwiki.org/wiki/COLORMAP
 //  see https://zdoom.org/wiki/COLORMAP

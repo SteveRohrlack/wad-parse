@@ -2,7 +2,7 @@
 //  WadPalettes.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 07.08.18.
+//  Created by Steve Rohrlack on 07.08.18.
 //
 //  see https://doomwiki.org/wiki/PLAYPAL
 

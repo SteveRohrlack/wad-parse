@@ -2,7 +2,7 @@
 //  WadLumpGraphicSprite.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 14.08.18.
+//  Created by Steve Rohrlack on 14.08.18.
 //
 //  see https://doomwiki.org/wiki/Sprite
 

@@ -2,7 +2,7 @@
 //  WadLumpGraphicPicture.swift
 //  wad-parse
 //
-//  Created by Steve Rohrlack Digitalwert on 03.08.18.
+//  Created by Steve Rohrlack on 03.08.18.
 //
 //  see https://zdoom.org/wiki/Patch
 //  see https://doomwiki.org/wiki/Picture_format
