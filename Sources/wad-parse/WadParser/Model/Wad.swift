@@ -14,9 +14,11 @@ struct Wad {
     let lumps: [WadLump]
     let data: Data
     
+    // MARK: - convenience attributes
+    
     var graphics: [WadGraphic] {
         return lumps.filter {
-            $0.categories.contains(.graphic) && $0 is WadLumpGraphicPicture
+            $0.categories.contains(.graphic)
         }.map {
             $0.content(in: data) as? WadGraphic
         }.filter {
@@ -27,7 +29,7 @@ struct Wad {
     }
     
     var sprites: [WadGraphicSprite] {
-        let sprites = lumps.filter {
+        return lumps.filter {
             $0.categories.contains(.graphicSprite)
         }.map {
             $0.content(in: data) as? WadGraphicSprite
@@ -36,24 +38,42 @@ struct Wad {
         }.map {
             $0!
         }
-        
-        return sprites
+    }
+    
+    var flats: [WadGraphicFlat] {
+        return lumps.filter {
+            $0.categories.contains(.graphicFlat)
+        }.map {
+            $0.content(in: data) as? WadGraphicFlat
+        }.filter {
+            $0 != nil
+        }.map {
+            $0!
+        }
+    }
+    
+    var sounds: [WadSound] {
+        return lumps.filter {
+            $0.categories.contains(.sound)
+        }.map {
+            $0.content(in: data) as? WadSound
+        }.filter {
+            $0 != nil
+        }.map {
+            $0!
+        }
     }
     
     var palettes: WadPalettes? {
-        guard let lumps = lumpsIn(category: .palette) else {
-            return nil
-        }
-        
-        return lumps.first?.content(in: data) as? WadPalettes
+        return lumps(inCategory: .palette)?
+            .first?
+            .content(in: data) as? WadPalettes
     }
     
     var colormaps: WadColormaps? {
-        guard let lumps = lumpsIn(category: .colormap) else {
-            return nil
-        }
-        
-        return lumps.first?.content(in: data) as? WadColormaps
+        return lumps(inCategory: .colormap)?
+            .first?
+            .content(in: data) as? WadColormaps
     }
     
     var levels: [WadLevel] {
@@ -82,23 +102,7 @@ struct Wad {
         return levels
     }
     
-    func lump<T: WadLump>(named name: String, in lumpCategory: WadLumpCategory? = nil) -> T? {
-        let lumpName = name.uppercased()
-        
-        return lumps.first {
-            if let category = lumpCategory {
-                return $0.name == lumpName && $0.categories.contains(category)
-            }
-            
-            return $0.name == lumpName
-        } as? T
-    }
-    
-    func lumpsIn(category: WadLumpCategory) -> [WadLump]? {
-        return lumps.filter {
-            return $0.categories.contains(category)
-        }
-    }
+    // MARK: - specific lump content access
     
     func spriteGroup(named name: String) -> WadSpriteGroup? {
         let spriteName = name.uppercased()
@@ -121,12 +125,26 @@ struct Wad {
     }
     
     func sprite(named name: String) -> WadGraphicSprite? {
-        guard let lump: WadLumpGraphicSprite = lump(named: name, in: .graphicSprite) else {
+        let graphicName = name.uppercased()
+        
+        guard let lump: WadLumpGraphicSprite = lump(named: graphicName, in: .graphicSprite) else {
             return nil
         }
         
         return lump.content(in: data) as? WadGraphicSprite
     }
+    
+    func flat(named name: String) -> WadGraphicFlat? {
+        let graphicName = name.uppercased()
+        
+        guard let lump: WadLumpGraphicFlat = lump(named: graphicName, in: .graphicFlat) else {
+            return nil
+        }
+        
+        return lump.content(in: data) as? WadGraphicFlat
+    }
+    
+    // MARK: - generic lump content access
 
     func graphic(named name: String) -> WadGraphic? {
         let graphicName = name.uppercased()
@@ -136,6 +154,48 @@ struct Wad {
         }?.content(in: data)
         
         return lumpContent as? WadGraphic
+    }
+    
+    func sound(named name: String) -> WadSound? {
+        let soundName = name.uppercased()
+        
+        let lumpContent = lumps.first {
+            $0.categories.contains(.sound) && $0.name == soundName
+        }?.content(in: data)
+        
+        return lumpContent as? WadSound
+    }
+    
+    // MARK: - lump access
+    
+    func lump(named name: String, in category: WadLumpCategory? = nil) -> WadLump? {
+        let lumpName = name.uppercased()
+        
+        return lumps.first {
+            if let category = category {
+                return $0.name.uppercased() == lumpName && $0.categories.contains(category)
+            }
+            
+            return $0.name.uppercased() == lumpName
+        }
+    }
+    
+    func lump<T: WadLump>(named name: String, in category: WadLumpCategory? = nil) -> T? {
+        return lump(named: name, in: category) as? T
+    }
+    
+    func lumps(inCategory category: WadLumpCategory) -> [WadLump]? {
+        return lumps.filter {
+            $0.categories.contains(category)
+        }
+    }
+    
+    func lumps(matching name: String) -> [WadLump] {
+        let lumpName = name.uppercased()
+        
+        return lumps.filter {
+            $0.name.uppercased().contains(lumpName)
+        }
     }
     
 }
