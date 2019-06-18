@@ -13,8 +13,8 @@ struct WadLumpSoundSpeaker: WadLump {
     
     static let headerLengthInBytes: UInt32 = 4
     
-    let lumpOffset: UInt32
-    let lumpSize: UInt32
+    let offset: UInt32
+    let size: UInt32
     let name: String
     let categories: Set<WadLumpCategory>
     
@@ -26,7 +26,7 @@ struct WadLumpSoundSpeaker: WadLump {
         
         // let length: Int16 = lumpData.intValue(at: 2)
         
-        let tones: [WadSoundSpeaker.Tone] = (WadLumpSoundSpeaker.headerLengthInBytes..<lumpSize).map { (toneIndex) in
+        let tones: [WadSoundSpeaker.Tone] = (WadLumpSoundSpeaker.headerLengthInBytes..<size).map { (toneIndex) in
             return WadSoundSpeaker.Tone(value: lumpData.intValue(at: Int(toneIndex)))
         }
         

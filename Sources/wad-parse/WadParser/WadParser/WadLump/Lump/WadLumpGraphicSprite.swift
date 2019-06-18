@@ -16,15 +16,15 @@ struct WadLumpGraphicSprite: WadLump {
         case frameRotationOutOfBounds(Int)
     }
     
-    let lumpOffset: UInt32
-    let lumpSize: UInt32
+    let offset: UInt32
+    let size: UInt32
     let name: String
     let categories: Set<WadLumpCategory>
     
     func content(in wadData: Data) -> WadLumpContent? {
         let picture = WadLumpGraphicPicture(
-            lumpOffset: lumpOffset,
-            lumpSize: lumpSize,
+            offset: offset,
+            size: size,
             name: name,
             categories: categories
         ).content(in: wadData) as! WadGraphicPicture

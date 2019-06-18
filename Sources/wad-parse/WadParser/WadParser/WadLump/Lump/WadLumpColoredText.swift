@@ -9,8 +9,8 @@ import Foundation
 
 struct WadLumpColoredText: WadLump {
     
-    let lumpOffset: UInt32
-    let lumpSize: UInt32
+    let offset: UInt32
+    let size: UInt32
     let name: String
     let categories: Set<WadLumpCategory>
     
@@ -19,7 +19,7 @@ struct WadLumpColoredText: WadLump {
         
         var coloredCharacters: [WadColoredText.ColoredCharacter] = []
         
-        for characterIndex in stride(from: 0, to: Int(lumpSize), by: 2) {
+        for characterIndex in stride(from: 0, to: Int(size), by: 2) {
             
             // characters originating from non-standard ascii can not be decoded
             // this is the default value for such characters

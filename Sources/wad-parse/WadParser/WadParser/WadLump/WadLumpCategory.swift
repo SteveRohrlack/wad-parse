@@ -38,7 +38,7 @@ enum WadLumpCategory: Hashable {
     case mapThings
     case mapLineDefinitions
     case mapSideDefinitions
-    case mapVertextes
+    case mapVertexes
     case mapSegments
     case mapSubSectors
     case mapNodes
@@ -98,7 +98,7 @@ enum WadLumpCategory: Hashable {
             categories.insert(.mapSideDefinitions)
         case "VERTEXES":
             categories.insert(.mapPart)
-            categories.insert(.mapVertextes)
+            categories.insert(.mapVertexes)
         case "SEGS":
             categories.insert(.mapPart)
             categories.insert(.mapSegments)
@@ -158,13 +158,13 @@ enum WadLumpCategory: Hashable {
             // start and end of subsection
             
             if categoryName.hasSuffix(Category.subsectionStartSuffix) {
-                let subsectionName = categoryName.replacingOccurrences(of: Category.Category.subsectionStartSuffix, with: "")
+                let subsectionName = categoryName.replacingOccurrences(of: Category.subsectionStartSuffix, with: "")
                 
                 categories.insert(.subsectionStart(subsectionName))
             }
             
             if categoryName.hasSuffix(Category.subsectionEndSuffix) {
-                let subsectionName = categoryName.replacingOccurrences(of: Category.Category.subsectionEndSuffix, with: "")
+                let subsectionName = categoryName.replacingOccurrences(of: Category.subsectionEndSuffix, with: "")
                 
                 categories.insert(.subsectionEnd(subsectionName))
             }
@@ -173,6 +173,11 @@ enum WadLumpCategory: Hashable {
         }
         
         // categories relying on the current subsection path
+        // in other words: lumps that are categorized by being enclosed in "section lumps"
+        // example:
+        // SECTION_START
+        // LUMP
+        // SECTION_END
         
         for subsection in subsections {
             if case let .subsectionStart(name) = subsection {
@@ -194,7 +199,7 @@ enum WadLumpCategory: Hashable {
             return categories
         }
         
-        // everything else is a graphic in "picture" format
+        // everything else should be a graphic in "picture" format
         
         return [.graphic, .graphicPicture]
     }

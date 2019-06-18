@@ -9,28 +9,29 @@ import Foundation
 
 protocol WadLump {
     
-    var lumpOffset: UInt32 { get }
-    var lumpSize: UInt32 { get }
+    var offset: UInt32 { get }
+    var size: UInt32 { get }
     var name: String { get }
     var categories: Set<WadLumpCategory> { get }
     
-    init(lumpOffset: UInt32, lumpSize: UInt32, name: String, categories: Set<WadLumpCategory>)
+    init(offset: UInt32, size: UInt32, name: String, categories: Set<WadLumpCategory>)
     
     func readData(in wadData: Data) -> Data
-    func content(in wadData: Data) -> WadLumpContent?
     func including(categories: Set<WadLumpCategory>) -> WadLump
+    
+    func content(in wadData: Data) -> WadLumpContent?
     
 }
 
 extension WadLump {
     
     func readData(in wadData: Data) -> Data {
-        let lumpAddress: Range<Int> = Int(lumpOffset)..<(Int(lumpOffset) + Int(lumpSize))
+        let lumpAddress: Range<Int> = Int(offset)..<(Int(offset) + Int(size))
         return wadData.subdata(in: lumpAddress)
     }
     
     func including(categories newCategories: Set<WadLumpCategory>) -> WadLump {
-        return Self.init(lumpOffset: lumpOffset, lumpSize: lumpSize, name: name, categories: categories.union(newCategories))
+        return Self.init(offset: offset, size: size, name: name, categories: categories.union(newCategories))
     }
     
 }

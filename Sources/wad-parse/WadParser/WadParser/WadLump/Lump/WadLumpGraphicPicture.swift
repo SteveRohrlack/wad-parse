@@ -17,8 +17,8 @@ struct WadLumpGraphicPicture: WadLump {
     
     static let pixelColumnEndValue = 255
     
-    let lumpOffset: UInt32
-    let lumpSize: UInt32
+    let offset: UInt32
+    let size: UInt32
     let name: String
     let categories: Set<WadLumpCategory>
     
