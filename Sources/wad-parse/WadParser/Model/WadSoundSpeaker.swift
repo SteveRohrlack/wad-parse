@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WadSoundSpeaker: WadLumpContent {
+struct WadSoundSpeaker: WadSound, WadLumpContent {
     
     // doom uses a internal refresh rate of 35
     // 4 times as many tones can be played in one second (=140)

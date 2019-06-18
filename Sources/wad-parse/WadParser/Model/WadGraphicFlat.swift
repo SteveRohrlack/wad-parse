@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WadGraphicFlat: WadGraphic, WadLumpContent {
+struct WadGraphicFlat: WadGraphic {
     
     static let height = 64
     static let width = 64

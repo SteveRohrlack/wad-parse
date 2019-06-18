@@ -43,8 +43,14 @@ struct WadColoredText: WadLumpContent {
         let blink: Bool
         
         static func from(byte: UInt8) throws -> Color {
+
+            /*
+            * bits:  7      |  6   5   4  |  3   2   1   0
+            *        blink  |  background |   foreground
+            */
+
             let blink = Int(byte >> 7) == 1
-            
+
             let foregroundColorValue = UInt8(byte & 0x0F)
             let backgrountColorValue = UInt8((byte << 1) >> 5)
             

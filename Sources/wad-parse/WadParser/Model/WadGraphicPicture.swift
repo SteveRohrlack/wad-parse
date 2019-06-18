@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WadGraphicPicture: WadGraphic, WadLumpContent {
+struct WadGraphicPicture: WadGraphic {
     
     let name: String
     let width: UInt16
