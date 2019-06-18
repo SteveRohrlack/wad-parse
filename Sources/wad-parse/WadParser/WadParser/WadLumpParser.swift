@@ -108,21 +108,21 @@ struct WadLumpParser {
         
         switch categories {
         case let c where c.contains(WadLumpCategory.exitText):
-            return WadLumpColoredText(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpColoredText(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         case let c where c.contains(WadLumpCategory.graphicSprite):
-            return WadLumpGraphicSprite(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpGraphicSprite(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         case let c where c.contains(WadLumpCategory.graphicPicture):
-            return WadLumpGraphicPicture(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpGraphicPicture(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         case let c where c.contains(WadLumpCategory.graphicFlat):
-            return WadLumpGraphicFlat(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpGraphicFlat(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         case let c where c.contains(WadLumpCategory.palette):
-            return WadLumpPalettes(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpPalettes(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         case let c where c.contains(WadLumpCategory.colormap):
-            return WadLumpColormap(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpColormap(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         case let c where c.contains(WadLumpCategory.pcSpeakerSound):
-            return WadLumpSoundSpeaker(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpSoundSpeaker(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         default:
-            return WadLumpGeneric(lumpOffset: lumpFileOffset, lumpSize: lumpSize, name: cleanedName, categories: categories)
+            return WadLumpGeneric(offset: lumpFileOffset, size: lumpSize, name: cleanedName, categories: categories)
         }
     }
     
