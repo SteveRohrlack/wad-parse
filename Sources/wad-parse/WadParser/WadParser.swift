@@ -11,7 +11,8 @@ class WadParser {
     
     enum Errors: Error {
         case inputFileNotReadable
-        case wadContainsNoBody
+        case invalidHeader
+        case invalidBody
         case invalidWadType
         case invalidColorValue
     }

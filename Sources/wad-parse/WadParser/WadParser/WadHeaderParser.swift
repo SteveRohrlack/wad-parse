@@ -16,8 +16,8 @@ struct WadHeaderParser {
     let wadData: Data
     
     func parse() throws -> WadHeader {
-        if wadData.count <= WadHeaderParser.lengthInBytes {
-            throw WadParser.Errors.wadContainsNoBody
+        if wadData.count < WadHeaderParser.lengthInBytes {
+            throw WadParser.Errors.invalidHeader
         }
         
         let headerData = wadData.subdata(in: (0..<WadHeaderParser.lengthInBytes))
@@ -28,9 +28,15 @@ struct WadHeaderParser {
             throw WadParser.Errors.invalidWadType
         }
         
+        let numberOfLumps: Int32 = headerData.intValue(at: WadHeaderParser.numberOfLumpsStartAddress)
+
+        if wadData.count == WadHeaderParser.lengthInBytes && numberOfLumps > 0 {
+            throw WadParser.Errors.invalidBody
+        }
+        
         return WadHeader(
             wadType: wadType,
-            numberOfLumps: headerData.intValue(at: WadHeaderParser.numberOfLumpsStartAddress),
+            numberOfLumps: numberOfLumps,
             directoryOffset: headerData.intValue(at: WadHeaderParser.directoryOffsetStartAddress)
         )
 
