@@ -23,9 +23,11 @@ struct WadColormap {
         static func ==(lhs: Category, rhs: Category) -> Bool {
             switch (lhs, rhs) {
             case (.partialInvisibility, .partialInvisibility):
+                // there can only be one "partialInvisibility" color map
                 return true
                 
             case (.special, .special):
+                // there can only be one "special" color map
                 return true
                 
             case (let .brightness(level1), let .brightness(level2)):

@@ -13,7 +13,7 @@ struct WadPixels: Array2DMapping {
     
     let columns: Int
     let rows: Int
-    internal(set) var values: [ValueType?]
+    var values: [ValueType?]
     
     init(columns: Int, rows: Int) {
         self.columns = columns

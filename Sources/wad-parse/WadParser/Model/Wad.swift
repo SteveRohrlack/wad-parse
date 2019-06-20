@@ -166,7 +166,7 @@ struct Wad {
         return lumpContent as? WadSound
     }
     
-    // MARK: - lump access
+    // MARK: - generic lump access
     
     func lump(named name: String, in category: WadLumpCategory? = nil) -> WadLump? {
         let lumpName = name.uppercased()
